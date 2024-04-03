@@ -13,7 +13,7 @@ const RobotArm = () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
 
-  // Lighting
+  // Lighting should work
   const light = new THREE.DirectionalLight(0xffffff, 1.0);
   light.position.set(10, 10, 10);
   scene.add(light);
@@ -92,10 +92,11 @@ const RobotArm = () => {
   const middle = createMiddleComponent();
   const arm = createArmComponent();
 
-  base.position.set(0, 0, 2.5);
+  base.position.set(0, 0, 2.5); 
   middle.position.set(0, 0, 7.5);
   arm.position.set(0, 0, 12.5);
 
+  // I think thsi works
   scene.add(base);
   base.add(middle);
   arm.add(arm);
