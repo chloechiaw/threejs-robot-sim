@@ -1,4 +1,4 @@
-
+// Unfinished!
 
 const configGui = gui.addFolder("Settings");
 Object.keys(configuration).forEach((setting) => {

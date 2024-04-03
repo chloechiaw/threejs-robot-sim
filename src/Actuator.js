@@ -1,3 +1,4 @@
+// Not sure if this is correct yet, check state transfer
 store.action("UPDATE_TARGET_DETAILS", (state, updatedData) => {
   // Check if target tracking is enabled
   if (state.enableTracking) {
