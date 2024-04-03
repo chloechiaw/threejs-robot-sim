@@ -32,6 +32,43 @@ const RobotArm = () => {
       radialSegments
     );
   };
+  const controls = new OrbitControls(camera, renderer.domElement);
+
+  
+  const uiControls = {
+    baseRotation: 0,
+    middleRotation: 0,
+    armRotation: 0,
+  };
+
+  const gui = new dat.GUI();
+  gui.add(uiControls, 'baseRotation', -Math.PI, Math.PI).name('Base Rotation').onChange(() => {
+    base.rotation.y = uiControls.baseRotation;
+  });
+  gui.add(uiControls, 'middleRotation', -Math.PI, Math.PI).name('Middle Rotation').onChange(() => {
+    middle.rotation.y = uiControls.middleRotation;
+  });
+  gui.add(uiControls, 'armRotation', -Math.PI, Math.PI).name('Arm Rotation').onChange(() => {
+    arm.rotation.x = uiControls.armRotation;
+  });
+
+  const updateRobot = () => {
+    base.rotation.y = uiControls.baseRotation;
+    middle.rotation.y = uiControls.middleRotation;
+    arm.rotation.x = uiControls.armRotation;
+  };
+
+  const animate = () => {
+    requestAnimationFrame(animate);
+    updateRobot(); 
+    renderer.render(scene, camera);
+  };
+  animate();
+    .add(uiControls, "middleRotation", -Math.PI, Math.PI)
+    .name("Middle Rotation")
+    .onChange(() => {
+      middle.rotation.y = uiControls.middleRotation;
+    });
 
   const createBaseComponent = () => {
     const baseGeometry = createRectangularPrism(5, 1, 5);
@@ -63,10 +100,9 @@ const RobotArm = () => {
   base.add(middle);
   arm.add(arm);
 
-  // Camera position
+
   camera.position.z = 20;
 
-  // Animation loop
   const animate = () => {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
